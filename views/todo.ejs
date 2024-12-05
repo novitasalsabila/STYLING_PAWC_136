@@ -1,0 +1,269 @@
+<style>
+.navbar {
+    background-color: #313539;
+    padding: 10px 20px; /* Atur padding navbar sesuai kebutuhan */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Pastikan navbar selalu di atas konten */
+    height: 60px; /* Atur tinggi navbar */
+}
+   
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+    margin-top: 80px; /* Tambahkan jarak dari navbar */
+    padding-top: 80px; /* Pastikan konten tidak tertutup navbar */
+}
+
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+
+/* Grid Layout untuk Todo Cards */
+.todo-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 kolom */
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* Styling untuk Card Todo */
+.todo-card {
+    background-color: #d7d5d5;  
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 150px; /* Sesuaikan dengan tinggi card yang lebih besar */
+}
+
+    /* Efek Hover untuk Card Todo */
+    .todo-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Styling untuk text yang sudah selesai */
+    .todo-card .completed {
+        text-decoration: line-through;
+        color: #999;
+    }
+
+    /* Styling untuk actions (tombol edit, delete) */
+    .todo-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: auto;
+    }
+
+    /* Tombol action styling */
+    .todo-actions .btn {
+        font-size: 12px;
+        padding: 5px 10px;
+        border-radius: 4px;
+    }
+
+    .todo-actions .btn-success {
+        background-color: #28a745;
+        border: none;
+        color: white;
+    }
+
+    .todo-actions .btn-danger {
+        background-color: #dc3545;
+        border: none;
+        color: white;
+    }
+
+    .todo-actions .btn:hover {
+        opacity: 0.8;
+    }
+
+    /* Footer Styling */
+footer {
+    background-color: #4f647a; /* Warna latar belakang yang sama dengan navbar */
+    color: white; /* Warna teks footer */
+    text-align: center;
+    padding: 20px 0;
+    font-size: 14px;
+    border-top: 1px solid #ddd; /* Garis pemisah seperti navbar */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    position: fixed;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Styling untuk tombol tambah task */    
+.add-todo-btn {
+    display: block;
+    width: 200px;
+    margin: 0 auto 30px; /* Menambahkan margin-bottom 30px untuk memberi jarak antara tombol dan card */
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4f647a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.add-todo-btn:hover {
+    background-color: #4d5f72;
+}
+</style>
+
+<div class="container mt-5">
+    <h1>Todo List</h1>
+
+    <!-- Form to Add New Todo -->
+    <button class="add-todo-btn" data-bs-toggle="modal" data-bs-target="#addModal">Add Todo</button>
+
+    <!-- List of Todos -->
+    <div id="todoList" class="todo-list">
+        <% todos.forEach(todo => { %>
+            <div class="todo-card">
+                <span class="<%= todo.completed ? 'completed' : '' %>">
+                    <%= todo.task %>
+                </span>
+                <div class="todo-actions">
+                    <button class="btn btn-sm btn-success editBtn" data-id="<%= todo.id %>">Edit</button>
+                    <button class="btn btn-sm btn-danger deleteBtn" data-id="<%= todo.id %>">Delete</button>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+
+    <!-- Add Todo Modal -->
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModalLabel">Add Todo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addTodoForm">
+                        <div class="form-group">
+                            <label for="newTask">Task</label>
+                            <input type="text" id="newTask" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Add Task</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Todo Modal -->
+    <div id="editModal" class="modal fade" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Todo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editTodoForm">
+                        <div class="form-group">
+                            <label for="editTask">Task</label>
+                            <input type="text" id="editTask" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Add new todo
+        $('#addTodoForm').on('submit', function (e) {
+            e.preventDefault();
+            const task = $('#newTask').val().trim();
+            if (task) {
+                $.ajax({
+                    url: '/todos',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ task: task }),
+                    success: function (newTodo) {
+                        // Append the new Todo item to the grid without reloading
+                        const todoCard = `
+                            <div class="todo-card">
+                                <span>${newTodo.task}</span>
+                                <div class="todo-actions">
+                                    <button class="btn btn-sm btn-success editBtn" data-id="${newTodo.id}">Edit</button>
+                                    <button class="btn btn-sm btn-danger deleteBtn" data-id="${newTodo.id}">Delete</button>
+                                </div>
+                            </div>`;
+                        $('#todoList').append(todoCard); // Menambah card baru
+                    },
+                    error: function (error) {
+                        console.error("Error adding task:", error.responseText);
+                    }
+                });
+            }
+        });
+
+        // Delete a todo
+        $('.deleteBtn').on('click', function () {
+            const id = $(this).data('id');
+            $.ajax({
+                url: '/todos/' + id,
+                type: 'DELETE',
+                success: function () {
+                    location.reload(); // Reload to show updated list
+                }
+            });
+        });
+
+        // Show edit modal with the current task
+        let editId;
+        $('.editBtn').on('click', function () {
+            editId = $(this).data('id');
+            const currentTask = $(this).closest('.todo-card').find('span').text();
+            $('#editTask').val(currentTask);
+            $('#editModal').modal('show');
+        });
+
+        // Update todo on form submission
+        $('#editTodoForm').on('submit', function (e) {
+            e.preventDefault();
+            const task = $('#editTask').val().trim();
+            if (task) {
+                $.ajax({
+                    url: '/todos/' + editId,
+                    type: 'PUT',
+                    data: JSON.stringify({ task: task, completed: false }),
+                    contentType: 'application/json',
+                    success: function () {
+                        location.reload(); // Reload to show updated todo
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 20220140136 | Novita Salsabila</p>
+</footer>

@@ -1,0 +1,229 @@
+/* HALAMAN LOGIN SIGNUP */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+}
+
+ 
+.signup-box,
+.login-box {
+  background-color: #EBEBEB;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  width: 350px;
+  text-align: left;  
+  border-radius: 5px;
+}
+
+.signup-box img,
+.login-box img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 20px auto; 
+  display: block; 
+}
+
+.signup-box h2,
+.login-box h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #9B9B9BE5; 
+  margin-bottom: 5px; 
+}
+
+.signup-box .halo-text,
+.login-box .halo-text {
+  font-size: 14px;
+  color: #777777; 
+  margin-bottom: 20px; 
+}
+
+.signup-box .form-label,
+.login-box .form-label {
+  font-size: 14px;
+  color: #333333; 
+  margin-bottom: 5px; 
+  display: block;
+}
+
+.signup-box .form-control,
+.login-box .form-control {
+  border-radius: 2px; 
+  border: 1px solid #FFFFFF; 
+  padding: 10px;
+  margin-bottom: 20px; 
+}
+
+.signup-box .form-control::placeholder
+.login-box .form-control::placeholder {
+  color: #9B9B9BE5; 
+}
+
+.signup-box a,
+.login-box a {
+  color: #4259DBE5; 
+  text-decoration: none; 
+}
+
+.signup-box p
+.login-box p {
+  font-size: 12px;
+  color: #9B9B9BE5; 
+}
+
+.center-text {
+  text-align: center; 
+  font-size: 14px;    
+  color: #9B9B9BE5;    
+  margin-bottom: 20px; 
+}
+
+.login-box button {
+  background-color: #FFFFFF;  
+  color: #9B9B9BE5;           
+  border: 1px solid #FFFFFF;  
+  padding: 10px 30px;         
+  border-radius: 2px;         
+  font-size: 16px;            
+  font-weight: bold;          
+  width: auto;               
+  max-width: 200px;          
+  margin: 0 auto;             
+  display: block;            
+}
+
+.custom-btn:hover {
+  background-color: #9B9B9BE5;  
+  border-color: #9B9B9BE5;     
+}
+
+.custom-btn:active {
+  background-color: #9B9B9BE5 !important;  
+  color: #FFFFFF !important;           
+  border-color: #9B9B9BE5 !important;      
+}
+
+/* NAVBAR */
+.navbar {
+  background-color: #4F4F4F !important;  
+  padding: 20px 20px;           
+  display: flex;                
+  align-items: center;          
+  position: fixed; 
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  z-index: 10; 
+}
+
+.nav-item {
+  margin-left: 15px;           
+}
+
+.nav-link {
+  font-size: 16px;             
+  color: #FFFFFF;            
+  display: block;              
+  padding: 5px 10px;          
+}
+
+.btn-link {
+  color: #FFFFFF;            
+  font-size: 16px;             
+  border: none;                
+  background: none;            
+  display: flex;               
+  align-items: center;         
+  padding: 0;                  
+}
+
+.material-symbols-outlined {
+  font-size: 20px;             
+  margin-right: 8px;           
+}
+
+.navbar img {
+  width: 40px;              
+  height: 40px;                
+  border-radius: 50%;        
+  object-fit: cover;         
+  margin-right: 15px;        
+}
+
+.todo-title {
+  position: absolute; 
+  top: 20%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  font-size: 2rem;
+  font-weight: bold;
+  color: #9B9B9BE5;
+  text-align: center; 
+  margin: 0; 
+}
+
+#addTodoForm {
+  display: flex !important;
+  justify-content: center !important;
+  position: absolute; 
+  top: 30%; 
+  left: 50%; 
+  transform: translate(-50%, -40%); 
+  color: #9B9B9BE5;
+}
+
+#addTodoForm .btn {
+  font-size: 1rem;
+  padding: 10px 20px;
+  color: #fff; 
+  background-color: #9B9B9BE5; 
+  border: none; 
+  border-radius: 5px; 
+  transition: background-color 0.3s ease; 
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+  height: 100vh; 
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px; 
+  padding: 20px;
+  text-align: center;
+}
+
+.todo-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+#addTodoForm {
+  margin-bottom: 30px;
+}
+
+.input-group {
+  display: flex;
+  justify-content: center;
+}
+
+.todo-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; 
+  padding: 0 20px;
+}
